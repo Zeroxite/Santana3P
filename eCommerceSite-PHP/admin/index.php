@@ -21,6 +21,10 @@ $statement = $pdo->prepare("SELECT * FROM tbl_product");
 $statement->execute();
 $total_product = $statement->rowCount();
 
+$statement = $pdo->prepare("SELECT * FROM tbl_product_vs_stocklimit");
+$statement->execute();
+$total_stockneeds = $statement->rowCount();
+
 $statement = $pdo->prepare("SELECT * FROM tbl_customer WHERE cust_status='1'");
 $statement->execute();
 $total_customers = $statement->rowCount();
@@ -216,6 +220,25 @@ $total_order_complete_shipping_pending = $statement->rowCount();
 				  </div>
 				  
 				</div>
+				
+			  </div>
+			  <div class="col-lg-3 col-xs-6">
+				<!-- small box -->
+				<a href=""> 
+
+					<div class="small-box bg-green">
+						<div class="inner">
+							<h3><?php echo $total_stockneeds; ?></h3>
+							
+							<p>STOCK NEEDS</p>
+						</div>
+						<div class="icon">
+							<i class="ionicons ion-arrow-up-b"></i>
+						</div>
+						
+					</div>
+				</a>
+					
 			  </div>
 
 		  </div>

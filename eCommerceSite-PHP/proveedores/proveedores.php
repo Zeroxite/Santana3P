@@ -2,7 +2,6 @@
 include_once("conexion.php"); 
 
 ?>
-
 <html>
 <head>    
 		<title>Proveedores</title>
@@ -43,7 +42,7 @@ else
 	<form method="POST">
 	<h1>Lista de proveedores</h1>
 	
-	<a href="proveedores.php">Inicio</a>
+	<a href="../admin/index.php">Inicio</a>
 	
 		<?php echo "<a href=\"agregar.php?pag=$pagina\">Crear proveedor</a>";?>
 			<input type="submit" value="Buscar" name="btnbuscar">
