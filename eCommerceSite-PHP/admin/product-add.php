@@ -107,6 +107,12 @@ if(isset($_POST['form1'])) {
 										p_old_price,
 										p_current_price,
 										p_qty,
+										camera,
+										ram,
+										diskspace,
+										processorghz,
+										date,
+										screentype,
 										p_featured_photo,
 										p_description,
 										p_short_description,
@@ -117,12 +123,18 @@ if(isset($_POST['form1'])) {
 										p_is_featured,
 										p_is_active,
 										ecat_id
-									) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+									) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 		$statement->execute(array(
 										$_POST['p_name'],
 										$_POST['p_old_price'],
 										$_POST['p_current_price'],
 										$_POST['p_qty'],
+										$_POST['camera'],
+										$_POST['ram'],
+										$_POST['diskspace'],
+										$_POST['processorghz'],
+										$_POST['date'],
+										$_POST['screentype'],
 										$final_name,
 										$_POST['p_description'],
 										$_POST['p_short_description'],
@@ -252,37 +264,37 @@ if(isset($_POST['form1'])) {
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Cámara <span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control">
+								<input type="text" name="camera" class="form-control">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">GB de Ram<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control" >
+								<input type="text" name="ram" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Espacio de disco<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control" >
+								<input type="text" name="diskspace" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Frecuencia de Procesador<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control" >
+								<input type="text" name="processorghz" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Año de manufactura<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control" >
+								<input type="text" name="date" class="form-control" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Tipo de Pantalla<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="p_qty" class="form-control">
+								<input type="text" name="screentype" class="form-control">
 							</div>
 						</div>
 						<div class="form-group">
