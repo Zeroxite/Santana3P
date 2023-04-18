@@ -371,7 +371,43 @@ foreach ($result as $row) {
 							</div>
 						</div>	
 						<div class="form-group">
-							<label for="" class="col-sm-3 control-label">Quantity <span>*</span></label>
+							<label for="" class="col-sm-3 control-label">Cantidad <span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Cámara <span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">GB de Ram<span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Espacio de disco<span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Frecuencia de Procesador<span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Año de manufactura<span>*</span></label>
+							<div class="col-sm-4">
+								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="" class="col-sm-3 control-label">Tipo de Pantalla<span>*</span></label>
 							<div class="col-sm-4">
 								<input type="text" name="p_qty" class="form-control" value="<?php echo $p_qty; ?>">
 							</div>
