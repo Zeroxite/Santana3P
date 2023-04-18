@@ -224,7 +224,7 @@ $total_order_complete_shipping_pending = $statement->rowCount();
 			  </div>
 			  <div class="col-lg-3 col-xs-6">
 				<!-- small box -->
-				<a href=""> 
+				<a href="../Stock/Restock.php"> 
 
 					<div class="small-box bg-green">
 						<div class="inner">
