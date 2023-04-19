@@ -1,60 +1,134 @@
-<?php require_once('header.php'); ?>
+<?php
+include_once("conexion.php"); 
+?>
+<html>
+<head>    
+		<title>Gama</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <?php
+ 
+    $filasmax = 5;
+ 
+    if (isset($_GET['pag'])) 
+	{
+        $pagina = $_GET['pag'];
+    } else 
+	{
+        $pagina = 1;
+    }
+ 
+ if(isset($_POST['btnbuscar']))
+{
+$buscar = $_POST['txtbuscar'];
 
-<section class="content-header">
-	<div class="content-header-left">
-		<h1>Gama</h1>
+ $sqlusu = mysqli_query($conn, "SELECT * FROM tbl_gama where id_categoria = '".$buscar."'");
+
+}
+else
+{
+ $sqlusu = mysqli_query($conn, "SELECT * FROM tbl_gama ORDER BY min_range ASC LIMIT " . (($pagina - 1) * $filasmax)  . "," . $filasmax);
+}
+ 
+    $resultadoMaximo = mysqli_query($conn, "SELECT count(*) as num_gama FROM tbl_gama");
+ 
+    $maxusutabla = mysqli_fetch_assoc($resultadoMaximo)['num_gama'];
+	
+    ?>
+	<div class="cont" >
+	<form method="POST">
+	<h1>Lista de gamas</h1>
+	
+	<a href="../admin/index.php">Inicio</a>
+	
+		<?php echo "<a href=\"gama-add.php?pag=$pagina\">Añadir gama</a>";?>
+			<input type="submit" value="Buscar" name="btnbuscar">
+			<input type="text" name="txtbuscar"  placeholder="Ingresar ID de gama" autocomplete="off" style='width:20%'>
+			</form>
+    <table>
+			<tr>
+			<th>ID</th>
+            <th>Nombre</th>
+            <th>Puntos</th>
+			<th>Acción</th>
+			</tr>
+ 
+        <?php
+ 
+        while ($mostrar = mysqli_fetch_assoc($sqlusu)) 
+		{
+			
+            echo "<tr>";
+			echo "<td>".$mostrar['id_categoria']."</td>";
+            echo "<td>".$mostrar['nombre']."</td>";
+            echo "<td>".$mostrar['min_range']."</td>";    
+            echo "<td style='width:24%'>
+			<a href=\"editar.php?id=$mostrar[id_categoria]&pag=$pagina\">Modificar</a> 
+			<a href=\"eliminar.php?id=$mostrar[id_categoria]&pag=$pagina\" onClick=\"return confirm('¿Estás seguro de eliminar a $mostrar[nombre]?')\">Eliminar</a>
+			</td>";  
+			
+        }
+ 
+        ?>
+    </table>
+	<div style='text-align:right'>
+	<br>
+	<?php echo "Total de gamas: ".$maxusutabla;?>
 	</div>
-	<div class="content-header-right">
-		<a href="gama-add.php" class="btn btn-primary btn-sm">Añadir</a>
 	</div>
-</section>
-
-
-<section class="content">
-
-  <div class="row">
-    <div class="col-md-12">
-
-
-      <div class="box box-info">
-        
-        <div class="box-body table-responsive">
-          <table id="example1" class="table table-bordered table-hover table-striped">
-			<thead>
-			    <tr>
-			        <th>#</th>
-			        <th>Nombre</th>
-                    <th>Puntos</th>
-			        <th>Action</th>
-			    </tr>
-			</thead>
-          
-          </table>
-        </div>
-      </div>
-  
-
-</section>
-
-
-<div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Confirmar eliminación</h4>
-            </div>
-            <div class="modal-body">
-                <p>Está seguro??</p>
-                <p style="color:red;">Cuidado, borrará los productos de esta gama.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-danger btn-ok">Delete</a>
-            </div>
-        </div>
-    </div>
+<div style='text-align:right'>
+<br>
 </div>
+    <div style="text-align:center">
+        <?php
+        if (isset($_GET['pag'])) {
+		   if ($_GET['pag'] > 1) {
+                ?>
+					<a href="Gama.php?pag=<?php echo $_GET['pag'] - 1; ?>">Anterior</a>
+            <?php
+					} 
+				else 
+					{
+                    ?>
+					<a href="#" style="pointer-events: none">Anterior</a>
+            <?php
+					}
+                ?>
+ 
+        <?php
+        } 
+		else 
+		{
+            ?>
+            <a href="#" style="pointer-events: none">Anterior</a>
+            <?php
+        }
+ 
+        if (isset($_GET['pag'])) {
+            if ((($pagina) * $filasmax) < $maxusutabla) {
+                ?>
+            <a href="Gama.php?pag=<?php echo $_GET['pag'] + 1; ?>">Siguiente</a>
+        <?php
+            } else {
+                ?>
+            <a href="#" style="pointer-events: none">Siguiente</a>
+        <?php
+            }
+            ?>
+        <?php
+        } else {
+            ?>
+            <a href="Gama.php?pag=2">Siguiente</a>
+        <?php
+        }
+ 
+        ?>
+    </div>
 
+    </form>
+</div>
+</body>
+</html>
 
-<?php require_once('footer.php'); ?>

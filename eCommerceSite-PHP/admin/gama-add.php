@@ -1,86 +1,58 @@
-<?php require_once('header.php'); ?>
+<?php 
+include_once("conexion.php"); 
+include_once("Gama.php");
 
+$pagina = $_GET['pag'];
+?>
+<html>
+<head>    
+		<title>Gama</title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="caja_popup2"> 
+  <form class="contenedor_popup" method="POST">
+        <table>
+		<tr><th colspan="2" >Agregar gama</th></tr>
+            <tr> 
+                <td>Nombre</td>
+                <td><input type="text" name="txtnombre" autocomplete="off"></td>
+            </tr>
+            <tr> 
+                <td>Puntos mínimos</td>
+                <td><input type="text" name="txtmin" autocomplete="off"></td>
+            </tr>
+            <tr> 	
+               <td colspan="2" >
+				  <?php echo "<a href=\"Gama.php?pag=$pagina\">Cancelar</a>";?>
+				   <input type="submit" name="btnregistrar" value="Registrar" onClick="javascript: return confirm('¿Deseas registrar a este proveedor');">
+			</td>
+            </tr>
+        </table>
+    </form>
+ </div>
+</body>
+</html>
 <?php
-if(isset($_POST['form1'])) {
-	$valid = 1;
 
+		if(isset($_POST['btnregistrar']))
+{   
+	$vainom 	= $_POST['txtnombre'];
+    $vaimin 	= $_POST['txtmin'];
 
-    if($valid == 1) {
-
-		//Saving data into the main table tbl_end_category
-		
+	$queryadd	= mysqli_query($conn, "INSERT INTO tbl_gama(nombre,min_range) VALUES('$vainom','$vaimin')");
 	
-    	$success_message = 'Gama añadida correctamente.';
-    }
+ 	if(!$queryadd)
+	{
+		// echo "Error con el registro: ".mysqli_error($conn);
+		 echo "<script>alert('Gama duplicada, intenta otra vez');</script>";
+		 
+	}else
+	{
+		echo "<script>window.location= 'Gama.php?pag=1' </script>";
+	}
 }
 ?>
 
-<section class="content-header">
-	<div class="content-header-left">
-		<h1>Añadir gama</h1>
-	</div>
-	<div class="content-header-right">
-		<a href="gama.php" class="btn btn-primary btn-sm">Ver Todas</a>
-	</div>
-</section>
 
-
-<section class="content">
-
-	<div class="row">
-		<div class="col-md-12">
-
-			<?php if($error_message): ?>
-			<div class="callout callout-danger">
-			
-			<p>
-			<?php echo $error_message; ?>
-			</p>
-			</div>
-			<?php endif; ?>
-
-			<?php if($success_message): ?>
-			<div class="callout callout-success">
-			
-			<p><?php echo $success_message; ?></p>
-			</div>
-			<?php endif; ?>
-
-			<form class="form-horizontal" action="" method="post">
-
-				<div class="box box-info">
-					<div class="box-body">
-						<div class="form-group">
-							<label for="" class="col-sm-3 control-label">Nombre de Gama <span>*</span></label>
-				
-							<div class="col-sm-4">
-								<input type="text" class="form-control" name="ecat_name">
-							</div>
-							
-						</div>
-						<div class="form-group">
-							<label for="" class="col-sm-3 control-label">Puntos <span>*</span></label>
-							<div class="col-sm-4">
-								<input type="text" class="form-control" name="ecat_name">
-							</div>
-						</div>
-					
-						
-						<div class="form-group">
-							<label for="" class="col-sm-3 control-label"></label>
-							<div class="col-sm-6">
-								<button type="submit" class="btn btn-success pull-left" name="form1">Añadir</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-			</form>
-
-
-		</div>
-	</div>
-
-</section>
-
-<?php require_once('footer.php'); ?>
