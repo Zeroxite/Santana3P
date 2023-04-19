@@ -2,10 +2,10 @@
 
 <section class="content-header">
 	<div class="content-header-left">
-		<h1>View End Level Categories</h1>
+		<h1>Gama</h1>
 	</div>
 	<div class="content-header-right">
-		<a href="end-category-add.php" class="btn btn-primary btn-sm">Add New</a>
+		<a href="gama-add.php" class="btn btn-primary btn-sm">Añadir</a>
 	</div>
 </section>
 
@@ -25,41 +25,10 @@
 			        <th>#</th>
 			        <th>Nombre</th>
                     <th>Puntos</th>
-                    <th>####</th>
 			        <th>Action</th>
 			    </tr>
 			</thead>
-            <tbody>
-            	<?php
-            	$i=0;
-            	$statement = $pdo->prepare("SELECT * 
-                                    FROM tbl_end_category t1
-                                    JOIN tbl_mid_category t2
-                                    ON t1.mcat_id = t2.mcat_id
-                                    JOIN tbl_top_category t3
-                                    ON t2.tcat_id = t3.tcat_id
-                                    ORDER BY t1.ecat_id DESC
-                                    ");
-            	$statement->execute();
-            	$result = $statement->fetchAll(PDO::FETCH_ASSOC);							
-            	foreach ($result as $row) {
-            		$i++;
-            		?>
-					<tr>
-	                    <td><?php echo $i; ?></td>
-	                    <td><?php echo $row['ecat_name']; ?></td>
-                        <td><?php echo $row['mcat_name']; ?></td>
-                        <td><?php echo $row['tcat_name']; ?></td>
-                        
-	                    <td>
-	                        <a href="end-category-edit.php?id=<?php echo $row['ecat_id']; ?>" class="btn btn-primary btn-xs">Edit</a>
-	                        <a href="#" class="btn btn-danger btn-xs" data-href="end-category-delete.php?id=<?php echo $row['ecat_id']; ?>" data-toggle="modal" data-target="#confirm-delete">Delete</a>
-	                    </td>
-	                </tr>
-            		<?php
-            	}
-            	?>
-            </tbody>
+          
           </table>
         </div>
       </div>
@@ -73,11 +42,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title" id="myModalLabel">Delete Confirmation</h4>
+                <h4 class="modal-title" id="myModalLabel">Confirmar eliminación</h4>
             </div>
             <div class="modal-body">
-                <p>Are you sure want to delete this item?</p>
-                <p style="color:red;">Be careful! All products under this end category will be deleted from all the tables like order table, payment table, size table, color table, rating table etc.</p>
+                <p>Está seguro??</p>
+                <p style="color:red;">Cuidado, borrará los productos de esta gama.</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
