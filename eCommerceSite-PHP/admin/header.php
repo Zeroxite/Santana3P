@@ -121,6 +121,7 @@ if(!isset($_SESSION['user'])) {
                             <li><a href="mid-category.php"><i class="fa fa-circle-o"></i> Mid Level Category</a></li>
                             <li><a href="end-category.php"><i class="fa fa-circle-o"></i> End Level Category</a></li>
 							<li><a href="gama.php"><i class="fa fa-circle-o"></i> Gama </a></li>
+							<li><a href="points.php"><i class="fa fa-circle-o"></i> Points </a></li>
                         </ul>
                     </li>
 
