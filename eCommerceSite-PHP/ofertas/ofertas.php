@@ -10,7 +10,10 @@ include_once("conexion.php");
 </head>
 <body>
     <?php
-    $codigo = $_GET['codigo'];
+    $codigo = '';
+    if(isset($_GET['codigo'])){
+        $codigo = $_GET['codigo'];
+    }
     $filasmax = 5;
  
     if (isset($_GET['pag'])) 
