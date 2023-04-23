@@ -10,7 +10,7 @@ include_once("conexion.php");
 </head>
 <body>
     <?php
- 
+    $codigo = $_GET['codigo'];
     $filasmax = 5;
  
     if (isset($_GET['pag'])) 
@@ -102,6 +102,8 @@ else
 		<?php echo "<a href=\"agregar.php?pag=$pagina\">Crear cupon</a>";?>
 			<input type="submit" value="Buscar" name="btnbuscar">
 			<input type="text" name="txtbuscar"  placeholder="Buscar cliente" autocomplete="off" style='width:20%'>
+            <input type="text" name="txtbuscarcupon"  placeholder="Cupon" autocomplete="off" style='width:12%' value="<?php echo $codigo;?>" readonly>
+            <?php echo "<a href=\"seleccionar.php?pag=$pagina\">Elegir cupon</a>";?>
 			</form>
     <table>
 			<tr>
