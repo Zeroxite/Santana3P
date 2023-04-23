@@ -133,9 +133,15 @@ if(!isset($_SESSION['user'])) {
                     </li>
 					<li>
 					<a href="../proveedores/proveedores.php">
-			            <i class="fa fa-hand-o-right"></i> <span>Proveedores</span>
+			            <i class="fa fa-clipboard"></i> <span>Proveedores</span>
 			          </a>
-					  </li>
+					</li>
+					  
+					<li>
+							<a href="../ofertas/ofertas.php">
+			            		<i class="fa fa-bullhorn"></i> <span>Enviar ofertas a clientes</span>
+			          		</a>
+					</li>
                     <li class="treeview <?php if( ($cur_page == 'order.php') ) {echo 'active';} ?>">
                         <a href="order.php">
                             <i class="fa fa-sticky-note"></i> <span>Order Management</span>
