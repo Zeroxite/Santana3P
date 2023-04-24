@@ -24,9 +24,11 @@ include_once("conexion.php");
 if(isset($_POST['btnbuscar']))
 {
 $buscar = $_POST['txtbuscar'];
+$option = "disabled";
 
+$combo1 = $_POST['comboutil'];
+echo $combo1;
 
-$combo1 = $_POST['combogama'];
 $presupuesto = $_POST['txtbudget'];
 $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria WHERE g.nombre = '".$combo1."' AND p.p_current_price<='".$presupuesto."';");
 
@@ -49,24 +51,19 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
 			<input type="text" name="txtbuscar"  placeholder="" autocomplete="off" style='width:15%'>
             Uso:
             <select name="comboutil" onChange="combo(this, 'demo')" style='width:20%'>
-            <option>Seleccionar...</option>
-            <option>Gaming</option>
-            <option>Word/Excel.(Uso estudiantil)</option>
-            <option>Editar videos/fotos</option>
-            <option>Programar/Diseñar</option>
-            <option>Ver videos y películas</option>
-            <option>Transmitir en Twitch y Youtube</option>
-            <option>Otros</option>
+            <option selected="true" disabled="disabled">Seleccionar...</option>
+            <option value ="Gama alta">Gaming</option>
+            <option value ="Gama baja">Word/Excel.(Uso estudiantil)</option>
+            <option value ="Gama media">Editar videos/fotos</option>
+            <option value ="Gama alta">Programar/Diseñar</option>
+            <option value ="Gama baja">Ver videos y películas</option>
+            <option value ="Gama media">Transmitir en Twitch y Youtube</option>
+            <option value ="Gama media">Otros</option>
             </select>
             Presupuesto:
-            <input type="number" name="txtbudget"  placeholder="" autocomplete="off" style='width:10%'>
-            Gama:
-            <select name="combogama" onChange="combo(this, 'demo')" style='width:15%'>
-            <option>Seleccionar...</option>
-            <option>Gama baja</option>
-            <option>Gama media</option>
-            <option>Gama alta</option>
+            <input type="number" name="txtbudget"  placeholder="" autocomplete="off" style='width:10%'>          
             <input type="submit" value="Buscar" name="btnbuscar">
+            
     <table>
 			<tr>
 			<th>ID</th>
@@ -86,7 +83,7 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
 			echo "<td>".$mostrar['nombre']."</td>";  
 			echo "<td>".$mostrar['p_current_price']."</td>";   
             echo "<td style='width:24%'>
-			<a href=\"ver.php?id=$mostrar[p_id]&pag=$pagina\">Ver</a> 
+            <a href=\"../product.php?id=$mostrar[p_id]\">Ver</a>
 			</td>";  
 			
         }

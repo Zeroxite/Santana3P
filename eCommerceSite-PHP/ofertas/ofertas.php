@@ -27,7 +27,7 @@ include_once("conexion.php");
         $email_user = 'phpecommerce3p@gmail.com';
      
         $email_password = 'jkcddakuphtiqhcx';
-
+        $code_discount = $_POST['txtbuscarcupon'];
         $sql = '';
         $mensaje = '';
         $query = mysqli_query($conn,$sql);
@@ -104,8 +104,9 @@ else
 	
 		<?php echo "<a href=\"agregar.php?pag=$pagina\">Crear cupon</a>";?>
 			<input type="submit" value="Buscar" name="btnbuscar">
+            <input type="submit" value="Recomendar clientes fieles" name="btnSuggest">
 			<input type="text" name="txtbuscar"  placeholder="Buscar cliente" autocomplete="off" style='width:20%'>
-            <input type="text" name="txtbuscarcupon"  placeholder="Cupon" autocomplete="off" style='width:12%' value="<?php echo $codigo;?>" readonly>
+            <input type="text" name="txtbuscarcupon"  placeholder="Cupon" autocomplete="off" style='width:12%' value="<?php echo $codigo;?>"  readonly>
             <?php echo "<a href=\"seleccionar.php?pag=$pagina\">Elegir cupon</a>";?>
 			</form>
     <table>
@@ -129,8 +130,7 @@ else
 			echo "<td>".$mostrar['cust_phone']."</td>";   
             echo "<td>".$mostrar['cust_status']."</td>";  
             echo "<td style='width:24%'>
-			<input type='submit' value='Enviar oferta' name='btnAlert'>
-            <a href=\"ver.php?id=$mostrar[cust_id]&pag=$pagina\">Ver</a>  
+            <a href=\"ver.php?id=$mostrar[cust_id]&pag=$pagina\">Enviar oferta</a>  
 			</td>";  
 			
         }
