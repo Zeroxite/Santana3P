@@ -142,6 +142,12 @@ if(!isset($_SESSION['user'])) {
 			            		<i class="fa fa-bullhorn"></i> <span>Enviar ofertas a clientes</span>
 			          		</a>
 					</li>
+					<li>
+							<a href="../temporadas/temporadas.php">
+			            		<i class="fa fa-calendar"></i> <span>Ofertas por temporada</span>
+			          		</a>
+					</li>
+					
                     <li class="treeview <?php if( ($cur_page == 'order.php') ) {echo 'active';} ?>">
                         <a href="order.php">
                             <i class="fa fa-sticky-note"></i> <span>Order Management</span>

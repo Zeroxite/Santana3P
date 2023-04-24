@@ -25,13 +25,18 @@ if(isset($_POST['btnbuscar']))
 {
 $buscar = $_POST['txtbuscar'];
 
-//$sqlusu = mysqli_query($conn, "SELECT * FROM tbl_gama_vs_product where id_sf = '".$buscar."'");
+$combo_array = array(1 => 'Gama baja',2 => 'Gama media',
+3 => 'Gama alta');
+$combo1 = $_POST['combogama'];
+echo $combo1;
+$presupuesto = $_POST['txtbudget'];
+$sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria WHERE g.nombre = '".$combo1."' AND p.p_current_price<='".$presupuesto."';");
 
 }
 
- //$resultadoMaximo = mysqli_query($conn, "SELECT count(*) as num_ofertas FROM tbl_season_offers");
+ $resultadoMaximo = mysqli_query($conn, "SELECT count(*) as num_ofertas FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria");
 
- //$maxusutabla = mysqli_fetch_assoc($resultadoMaximo)['num_ofertas'];
+ $maxusutabla = mysqli_fetch_assoc($resultadoMaximo)['num_ofertas'];
  
  ?>
 	<div class="cont" >
@@ -54,14 +59,14 @@ $buscar = $_POST['txtbuscar'];
             <option>Otros</option>
             </select>
             Presupuesto:
-            <input type="number" name="txtbuscar"  placeholder="" autocomplete="off" style='width:10%'>
+            <input type="number" name="txtbudget"  placeholder="" autocomplete="off" style='width:10%'>
             Gama:
             <select name="combogama" onChange="combo(this, 'demo')" style='width:15%'>
             <option>Seleccionar...</option>
-            <option>Baja</option>
-            <option>Media</option>
-            <option>Alta</option>
-            <input type="submit" value="Buscar" name="btnbuscar">
+            <option>Gama baja</option>
+            <option>Gama media</option>
+            <option>Gama alta</option>
+            <input type="submit" value="Sugerir" name="btnbuscar">
     <table>
 			<tr>
 			<th>ID</th>

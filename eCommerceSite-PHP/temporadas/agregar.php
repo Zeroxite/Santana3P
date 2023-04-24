@@ -34,7 +34,7 @@ $pagina = $_GET['pag'];
             <tr> 	
                <td colspan="2" >
 				  <?php echo "<a href=\"temporadas.php?pag=$pagina\">Cancelar</a>";?>
-				   <input type="submit" name="btnregistrar" value="Registrar" onClick="javascript: return confirm('¿Deseas registrar a este proveedor');">
+				   <input type="submit" name="btnregistrar" value="Registrar" onClick="javascript: return confirm('¿Deseas registrar a esta temporada');">
 			</td>
             </tr>
         </table>

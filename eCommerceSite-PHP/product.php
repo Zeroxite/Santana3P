@@ -1,4 +1,4 @@
-<?php require_once('header.php'); ?>
+<?php require_once('header.php'); include_once("conexion.php"); ?>
 
 <?php
 if(!isset($_REQUEST['id'])) {
@@ -14,12 +14,25 @@ if(!isset($_REQUEST['id'])) {
         header('location: index.php');
         exit;
     }
+    $discount_season = mysqli_query($conn,"SELECT * FROM `tbl_season_offers` WHERE CURRENT_DATE()>=date_start AND CURRENT_DATE()<=date_end");
+    
 }
-
+$descuento = 0;
+foreach($discount_season as $row){
+    $descuento = $row['discounts'];
+}
 foreach($result as $row) {
+    
+
+
+    if($descuento == 0){
+        $p_old_price = $row['p_old_price'];
+    }else{
+        $p_old_price = $row['p_current_price'];
+    }
     $p_name = $row['p_name'];
-    $p_old_price = $row['p_old_price'];
-    $p_current_price = $row['p_current_price'];
+    
+    $p_current_price = intval($row['p_current_price'])-$descuento;
     $p_qty = $row['p_qty'];
     $p_featured_photo = $row['p_featured_photo'];
     $p_description = $row['p_description'];
@@ -671,6 +684,7 @@ if($success_message1 != '') {
                     $statement = $pdo->prepare("SELECT * FROM tbl_product WHERE ecat_id=? AND p_id!=?");
                     $statement->execute(array($ecat_id,$_REQUEST['id']));
                     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+                   
                     foreach ($result as $row) {
                         ?>
                         <div class="item">
@@ -681,7 +695,7 @@ if($success_message1 != '') {
                             <div class="text">
                                 <h3><a href="product.php?id=<?php echo $row['p_id']; ?>"><?php echo $row['p_name']; ?></a></h3>
                                 <h4>
-                                    <?php echo LANG_VALUE_1; ?><?php echo $row['p_current_price']; ?> 
+                                    <?php echo LANG_VALUE_1; ?><?php echo $row['p_current_price']-($row['p_current_price']); ?> 
                                     <?php if($row['p_old_price'] != ''): ?>
                                     <del>
                                         <?php echo LANG_VALUE_1; ?><?php echo $row['p_old_price']; ?>
