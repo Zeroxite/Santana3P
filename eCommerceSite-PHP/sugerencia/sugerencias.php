@@ -25,16 +25,16 @@ if(isset($_POST['btnbuscar']))
 {
 $buscar = $_POST['txtbuscar'];
 
-$combo_array = array(1 => 'Gama baja',2 => 'Gama media',
-3 => 'Gama alta');
+
 $combo1 = $_POST['combogama'];
-echo $combo1;
 $presupuesto = $_POST['txtbudget'];
 $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria WHERE g.nombre = '".$combo1."' AND p.p_current_price<='".$presupuesto."';");
 
+}else{
+$sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria;");
 }
 
- $resultadoMaximo = mysqli_query($conn, "SELECT count(*) as num_ofertas FROM `tbl_gama_vs_product` vs inner join tbl_product p on vs.id_product = p.p_id INNER JOIN tbl_gama g on g.id_categoria = vs.id_categoria");
+ $resultadoMaximo = mysqli_query($conn, "SELECT count(*) as num_ofertas FROM `tbl_gama_vs_product`");
 
  $maxusutabla = mysqli_fetch_assoc($resultadoMaximo)['num_ofertas'];
  
@@ -66,7 +66,7 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
             <option>Gama baja</option>
             <option>Gama media</option>
             <option>Gama alta</option>
-            <input type="submit" value="Sugerir" name="btnbuscar">
+            <input type="submit" value="Buscar" name="btnbuscar">
     <table>
 			<tr>
 			<th>ID</th>
@@ -74,14 +74,14 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
             <th>Gama</th>
             <th>Precio</th>
 			</tr>
-        <!--
+       
         <?php
  
         while ($mostrar = mysqli_fetch_assoc($sqlusu)) 
 		{
 			
             echo "<tr>";
-			echo "<td>".$mostrar['id_product']."</td>";
+			echo "<td>".$mostrar['p_id']."</td>";
             echo "<td>".$mostrar['p_name']."</td>";    
 			echo "<td>".$mostrar['nombre']."</td>";  
 			echo "<td>".$mostrar['p_current_price']."</td>";   
@@ -92,8 +92,61 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
         }
  
         ?>
-        -->
+        
     </table>
+    <div style='text-align:right'>
+	<br>
+	<?php echo "Total de productos: ".$maxusutabla;?>
+	</div>
+	</div>
+<div style='text-align:right'>
+<br>
+</div>
+    <div style="text-align:center">
+        <?php
+        if (isset($_GET['pag'])) {
+		   if ($_GET['pag'] > 1) {
+                ?>
+					<a href="sugerencias.php?pag=<?php echo $_GET['pag'] - 1; ?>">Anterior</a>
+            <?php
+					} 
+				else 
+					{
+                    ?>
+					<a href="#" style="pointer-events: none">Anterior</a>
+            <?php
+					}
+                ?>
+ 
+        <?php
+        } 
+		else 
+		{
+            ?>
+            <a href="#" style="pointer-events: none">Anterior</a>
+            <?php
+        }
+ 
+        if (isset($_GET['pag'])) {
+            if ((($pagina) * $filasmax) < $maxusutabla) {
+                ?>
+            <a href="sugerencias.php?pag=<?php echo $_GET['pag'] + 1; ?>">Siguiente</a>
+        <?php
+            } else {
+                ?>
+            <a href="#" style="pointer-events: none">Siguiente</a>
+        <?php
+            }
+            ?>
+        <?php
+        } else {
+            ?>
+            <a href="sugerencias.php?pag=2">Siguiente</a>
+        <?php
+        }
+ 
+        ?>
+    </div>
 
 </form>
 	</div>
