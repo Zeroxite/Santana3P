@@ -45,7 +45,7 @@ $sqlusu = mysqli_query($conn, "SELECT p.p_id,p.p_name,g.nombre,p.p_current_price
 	<form method="POST">
 	<h1>Sugerencias</h1>
 	
-	<a href="../admin/index.php">Inicio</a>
+	<a href="../index.php">Inicio</a>
         <br>
             Nombre del cliente:
 			<input type="text" name="txtbuscar"  placeholder="" autocomplete="off" style='width:15%'>

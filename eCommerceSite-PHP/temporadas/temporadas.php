@@ -55,6 +55,7 @@ else
             <th>Fecha de inicio</th>
             <th>Fecha de cierre</th>
             <th>Descuento</th>
+            <th>Categoria</th>
 			<th>Acción</th>
 			</tr>
  
@@ -68,7 +69,8 @@ else
             echo "<td>".$mostrar['description']."</td>";    
 			echo "<td>".$mostrar['date_start']."</td>";  
 			echo "<td>".$mostrar['date_end']."</td>";  
-            echo "<td>".$mostrar['discounts']."</td>";  
+            echo "<td>".$mostrar['discounts']."</td>";
+            echo "<td>".$mostrar['categoria']."</td>";   
             echo "<td style='width:24%'>
 			<a href=\"ver.php?id=$mostrar[id_sf]&pag=$pagina\">Ver</a> 
 			<a href=\"editar.php?id=$mostrar[id_sf]&pag=$pagina\">Modificar</a> 

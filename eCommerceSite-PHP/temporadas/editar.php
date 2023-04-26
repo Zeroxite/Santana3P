@@ -14,6 +14,7 @@ while($mostrar = mysqli_fetch_array($querybuscar))
 	$tempini 	= $mostrar['date_start'];
     $tempend    = $mostrar['date_end'];
 	$tempdisc 	= $mostrar['discounts'];
+    $tempcat    = $mostrar['categoria'];
 }
 ?>
 <html>
@@ -38,15 +39,29 @@ while($mostrar = mysqli_fetch_array($querybuscar))
                 <td>Fecha de cierre</td>
                 <td><input type="date" name="dateend" value="<?php echo $tempend;?>" required></td>
             </tr>
-			  <tr> 
+			<tr> 
                 <td>Descuento</td>
                 <td><input type="text" name="txtdisc" value="<?php echo $tempdisc;?>" required></td>
+            </tr>
+            <tr> 
+                <td>Categoria</td>
+                <td>
+            <select name="comboCategoria" onChange="combo(this, 'demo')" style='width:20%'>
+            <option selected="true" value="<?php echo $tempcat;?>" disabled="disabled"><?php echo $tempcat;?></option>
+            <option value ="Men">Men</option>
+            <option value ="Women">Women</option>
+            <option value ="Kids">Kids</option>
+            <option value ="Electronics">Electronics</option>
+            <option value ="Health and Household">Health and Household</option>
+            <option value ="Todas">Todas</option>
+            </select>
+            </td>
             </tr>
             <tr>
 				
                 <td colspan="2">
 				 <?php echo "<a href=\"temporadas.php?pag=$pagina\">Cancelar</a>";?>
-				<input type="submit" name="btnmodificar" value="Modificar" onClick="javascript: return confirm('¿Deseas modificar este proveedor?');">
+				<input type="submit" name="btnmodificar" value="Modificar" onClick="javascript: return confirm('¿Deseas modificar esta temporada?');">
 				</td>
             </tr>
         </table>
@@ -63,8 +78,8 @@ while($mostrar = mysqli_fetch_array($querybuscar))
 	$ini1 = $_POST['dateini'];
 	$end1 = $_POST['dateend'];
 	$disc1 = $_POST['txtdisc'];
-      
-    $querymodificar = mysqli_query($conn, "UPDATE tbl_season_offers SET description='$desc1',date_start='$ini1',date_end='$end1',discounts='$disc1' WHERE id_sf=$tempid");
+    $cate = $_POST['comboCategoria'];  
+    $querymodificar = mysqli_query($conn, "UPDATE tbl_season_offers SET description='$desc1',date_start='$ini1',date_end='$end1',discounts='$disc1',categoria='$cate' WHERE id_sf=$tempid");
 	echo "<script>window.location= 'temporadas.php?pag=$pagina' </script>";
     
 }

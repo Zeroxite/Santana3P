@@ -27,9 +27,23 @@ $pagina = $_GET['pag'];
                 <td>Fecha de cierre</td>
                 <td><input type="date" name="dateend" autocomplete="off"></td>
             </tr>
-			  <tr> 
+			<tr> 
                 <td>Descuento</td>
                 <td><input type="number" name="txtdisc" autocomplete="off"></td>
+            </tr>
+            <tr> 
+                <td>Categoria</td>
+                <td>
+            <select name="comboCategoria" style='width:20%'>
+            <option selected="true" disabled="disabled">Seleccionar...</option>
+            <option value ="Men">Men</option>
+            <option value ="Women">Women</option>
+            <option value ="Kids">Kids</option>
+            <option value ="Electronics">Electronics</option>
+            <option value ="Health and Household">Health and Household</option>
+            <option value ="Todas">Todas</option>
+            </select>
+            </td>
             </tr>
             <tr> 	
                <td colspan="2" >
@@ -50,8 +64,9 @@ $pagina = $_GET['pag'];
     $vaiini 	= $_POST['dateini'];
 	$vaiend 	= $_POST['dateend'];
     $vaidisc 	= $_POST['txtdisc'];
+    $vaicat     = $_POST['comboCategoria'];
 
-	$queryadd	= mysqli_query($conn, "INSERT INTO tbl_season_offers(description,date_start,date_end,discounts) VALUES('$vaidesc','$vaiini','$vaiend','$vaidisc')");
+	$queryadd	= mysqli_query($conn, "INSERT INTO tbl_season_offers(description,date_start,date_end,discounts,categoria) VALUES('$vaidesc','$vaiini','$vaiend','$vaidisc','$vaicat')");
 	
  	if(!$queryadd)
 	{

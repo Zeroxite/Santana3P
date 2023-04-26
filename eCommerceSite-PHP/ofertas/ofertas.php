@@ -11,6 +11,7 @@ include_once("conexion.php");
 <body>
     <?php
     $codigo = '';
+    $code_discount = '';
     if(isset($_GET['codigo'])){
         $codigo = $_GET['codigo'];
     }
@@ -78,8 +79,10 @@ include_once("conexion.php");
 
 
     }
- 
- if(isset($_POST['btnbuscar']))
+
+if(isset($_POST['btnsug'])){
+    $sqlusu = mysqli_query($conn, "SELECT * FROM tbl_customer c INNER JOIN tbl_loyalty_points_vs_clientes vs on c.cust_id = vs.id_customer WHERE vs.points > 10");
+}else if(isset($_POST['btnbuscar']))
 {
 $buscar = $_POST['txtbuscar'];
 
@@ -104,7 +107,7 @@ else
 	
 		<?php echo "<a href=\"agregar.php?pag=$pagina\">Crear cupon</a>";?>
 			<input type="submit" value="Buscar" name="btnbuscar">
-            <input type="submit" value="Recomendar clientes fieles" name="btnSuggest">
+            <input type="submit" value="Recomendar clientes fieles" name="btnsug">
 			<input type="text" name="txtbuscar"  placeholder="Buscar cliente" autocomplete="off" style='width:20%'>
             <input type="text" name="txtbuscarcupon"  placeholder="Cupon" autocomplete="off" style='width:12%' value="<?php echo $codigo;?>"  readonly>
             <?php echo "<a href=\"seleccionar.php?pag=$pagina\">Elegir cupon</a>";?>
@@ -130,7 +133,7 @@ else
 			echo "<td>".$mostrar['cust_phone']."</td>";   
             echo "<td>".$mostrar['cust_status']."</td>";  
             echo "<td style='width:24%'>
-            <a href=\"ver.php?id=$mostrar[cust_id]&pag=$pagina\">Enviar oferta</a>  
+            <a href=\"ver.php?id=$mostrar[cust_id]&pag=$pagina&codigo=$codigo\">Enviar oferta</a>  
 			</td>";  
 			
         }

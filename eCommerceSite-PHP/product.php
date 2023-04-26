@@ -18,8 +18,11 @@ if(!isset($_REQUEST['id'])) {
     
 }
 $descuento = 0;
+$categoria_desc = '';
+$categs = '';
 foreach($discount_season as $row){
     $descuento = $row['discounts'];
+    $categoria_desc = $row['categoria'];
 }
 foreach($result as $row) {
     
@@ -31,8 +34,20 @@ foreach($result as $row) {
         $p_old_price = $row['p_current_price'];
     }
     $p_name = $row['p_name'];
+    $cat = mysqli_query($conn,"SELECT top.tcat_name FROM `tbl_top_category` top INNER JOIN tbl_mid_category mid on mid.tcat_id = top.tcat_id INNER JOIN tbl_end_category endc on endc.mcat_id = mid.mcat_id INNER JOIN
+    tbl_product p on p.ecat_id = endc.ecat_id WHERE p.p_id =".$row['p_id']."");
+    foreach($cat as $r){
+        $categs = $r['tcat_name'];
+    }
+    if($categs == $categoria_desc){
+        $p_current_price = intval($row['p_current_price'])-(intval($row['p_current_price'])*($descuento/100));
+    }else if($categoria_desc == 'Todas'){
+        $p_current_price = intval($row['p_current_price'])-(intval($row['p_current_price'])*($descuento/100));
+    }else{
+        $p_current_price =$row['p_current_price'];
+    }
+
     
-    $p_current_price = intval($row['p_current_price'])-$descuento;
     $p_qty = $row['p_qty'];
     $p_featured_photo = $row['p_featured_photo'];
     $p_description = $row['p_description'];

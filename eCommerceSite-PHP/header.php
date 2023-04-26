@@ -402,6 +402,7 @@ foreach ($result as $row) {
 							<li><a href="faq.php"><?php echo $faq_title; ?></a></li>
 
 							<li><a href="contact.php"><?php echo $contact_title; ?></a></li>
+							<li><a href="sugerencia/sugerencias.php">Suggest me a product</a></li>
 						</ul>
 					</div>
 				</div>
