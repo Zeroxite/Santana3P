@@ -147,6 +147,11 @@ if(!isset($_SESSION['user'])) {
 			            		<i class="fa fa-calendar"></i> <span>Ofertas por temporada</span>
 			          		</a>
 					</li>
+					<li>
+							<a href="../ConTicket/tickets.php">
+			            		<i class="fa fa-question-circle"></i> <span>Ver tickets</span>
+			          		</a>
+					</li>
 					
                     <li class="treeview <?php if( ($cur_page == 'order.php') ) {echo 'active';} ?>">
                         <a href="order.php">

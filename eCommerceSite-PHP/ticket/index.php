@@ -1,6 +1,21 @@
 <html>
 <head>
 <link rel="stylesheet" href="style.css">
+<style>
+    a {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+a:hover {
+  background-color: #3e8e41;
+}
+</style>
 </head>
 <body>
 <form action="#" method="POST" class="contact-form">
@@ -13,9 +28,15 @@
   <label for="message">Mensaje:</label>
   <textarea id="message" name="message" placeholder="Escribe tu mensaje" required></textarea>
   
-  <button type="submit" class="submit-button">Enviar mensaje</button>
+  <button type="submit" name="btnEnviar" class="submit-button">Enviar mensaje</button>
+  <a href="../chatbot_sugerencias-master/chat-ui/dist/index.php">Volver</a>
+  <!-- <button type="back" class="submit-button" href="../chatbot_sugerencias-master/chat-ui/dist/index.php">Volver</button>
 </form>
 <?php
+require '../vendor/autoload.php';
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
 // Conexión a la base de datos
 $conexion = mysqli_connect("localhost", "root", "", "ecommerceweb");
 
@@ -25,7 +46,7 @@ if (!$conexion) {
 }
 
 // Obtener los datos a insertar desde un formulario o cualquier otra fuente
-
+if(isset($_POST['btnEnviar'])){
 $correo = $_POST["email"];
 $mensaje = $_POST["message"];
 
@@ -40,12 +61,9 @@ if (mysqli_query($conexion, $sql)) {
     echo "Error al insertar los datos: " . mysqli_error($conexion);
 	
 }
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
+
 
 //Load Composer's autoloader
-require '../vendor/autoload.php';
 $email_user = 'phpecommerce3p@gmail.com';
      
         $email_password = 'jkcddakuphtiqhcx';
@@ -91,7 +109,7 @@ $email_user = 'phpecommerce3p@gmail.com';
 
 // Cerrar la conexión a la base de datos
 mysqli_close($conexion);
-
+        }
 
 ?>
 </body>

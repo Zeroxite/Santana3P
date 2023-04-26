@@ -412,37 +412,37 @@ foreach ($result as $row) {
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Cámara <span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="camera" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="camera" class="form-control" value="<?php echo $camera; ?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">GB de Ram<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="ram" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="ram" class="form-control" value="<?php echo $ram; ?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Espacio de disco<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="diskspace" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="diskspace" class="form-control" value="<?php echo $diskspace; ?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Frecuencia de Procesador<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="processorghz" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="processorghz" class="form-control" value="<?php echo $processorghz; ?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Año de manufactura<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="date" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="date" class="form-control" value="<?php echo $date; ?>">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="" class="col-sm-3 control-label">Tipo de Pantalla<span>*</span></label>
 							<div class="col-sm-4">
-								<input type="text" name="screentype" class="form-control" value="<?php echo $p_qty; ?>">
+								<input type="text" name="screentype" class="form-control" value="<?php echo $screentype; ?>">
 							</div>
 						</div>
 						<div class="form-group">

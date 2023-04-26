@@ -403,6 +403,7 @@ foreach ($result as $row) {
 
 							<li><a href="contact.php"><?php echo $contact_title; ?></a></li>
 							<li><a href="sugerencia/sugerencias.php">Suggest me a product</a></li>
+							<li><a href="chatbot_sugerencias-master/chat-ui/dist/index.php">ChatBot</a></li>
 						</ul>
 					</div>
 				</div>
